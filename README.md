@@ -20,20 +20,23 @@ npm run coverage
 
 ### ✅ Basics
 - **Does the program run?** Yes, tested with Node.js v22.16.0.
-- **Does it read and output data we would like it to?** Yes, it reads CSV input and outputs transformed data to `stdout` or a file.
+- **Does it read and output data we would like it to?** Yes, it reads CSV input and outputs transformed data to `stdout`.
 - **Is it properly formatted?** Yes.
 
 ### ✅ Completeness
 - **Does it handle all the cases, including differing numbers of rows and columns, bigger and smaller tables, error cases you might come up with?** 
-I believe so. These are the cases I am handling:  
-1. Invalid json for the table
-2. Invalid tables => arrays that cannot be transformed into a table due to its length
-3. No File provided as input
-4. The File provided as input does not exist or cannot be found
-5. Node.js fails to read the csv data as an stream
+The app handles tables with different numbers of rows and columns, bigger and smaller tables and error scenarios.
+
+&nbsp;&nbsp;&nbsp;**The following error cases are handled**:
+<br>
+&nbsp;&nbsp;&nbsp;1. Invalid JSON for the table  
+&nbsp;&nbsp;&nbsp;2. Invalid tables — arrays that cannot be transformed into a table due to length  
+&nbsp;&nbsp;&nbsp;3. No file provided as input  
+&nbsp;&nbsp;&nbsp;4. The file provided does not exist or cannot be found  
+&nbsp;&nbsp;&nbsp;5. Node.js fails to read or to output the data
 - **For the cases you are handling, are you
 handling them correctly?** Yes, I Believe so.
-- **How do you know this?** I created test inputs and manually verified output + wrote unit tests. Besides that, If the app crashes due to an error reading or outputting the stream, I cleanup the streams and I terminate the node.js process ensuring no memory leaks
+- **How do you know this?** I created specific test inputs and manually verified the output. In addition, I wrote unit tests to cover edge cases. The stream pipeline is wrapped with proper error handling. If a failure occurs while reading or writing, I clean up the streams and terminate the Node.js process to avoid memory leaks.
 - **Did you test against sample data?** Yes, see `data/input.csv`.
 - **Did you write unit tests?** Yes, they cover all the cases I could think of and they can be found at `src/cli.spec.ts` and `src/index.spec.ts`
 

@@ -2,4 +2,3 @@ node_modules
 coverage
 output.csv
 .DS_Store
-data

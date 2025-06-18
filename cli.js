@@ -4063,7 +4063,7 @@ var Cli = class {
           const processedRow = this.processRow({ id, json: jsonArray });
           outputStream.write(processedRow);
         } catch (err) {
-          outputStream.write({ id: row.id, json: "[]", is_valid: false });
+          outputStream.write({ id: row.id || 0, json: "[]", is_valid: false });
         }
       }).on("end", () => {
         outputStream.end();
